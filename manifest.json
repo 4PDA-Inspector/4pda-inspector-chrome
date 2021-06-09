@@ -3,6 +3,12 @@
 	"name": "4PDA Инспектор",
 	"version": "3.3.2.1",
 
+	"applications": {
+		"gecko": {
+			"id": "4pda_inspector@coddism.com"
+		}
+	},
+
 	"description": "Мониторинг изменений на форуме 4pda",
 	"homepage_url": "http://4pdainspector.coddism.com",
 	"icons": {
@@ -19,7 +25,6 @@
 		"notifications",
 		"storage"
 	],
-	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 
 	"browser_action": {
 		"default_title": "4PDA Инспектор",
