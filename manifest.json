@@ -1,16 +1,16 @@
 {
-	"manifest_version": 2,
 	"name": "4PDA Инспектор",
-	"version": "3.3.2.1",
+	"version": "3.4",
+	"description": "Мониторинг изменений на форуме 4pda",
+	"homepage_url": "http://4pdainspector.coddism.com",
 
+	"manifest_version": 2,
 	"applications": {
 		"gecko": {
 			"id": "4pda_inspector@coddism.com"
 		}
 	},
 
-	"description": "Мониторинг изменений на форуме 4pda",
-	"homepage_url": "http://4pdainspector.coddism.com",
 	"icons": {
 		"128":"icons/icon_128.png",
 		"48": "icons/icon_48.png",
@@ -20,8 +20,8 @@
 	"permissions": [
 		"tabs",
 		"cookies",
+		"https://4pda.ru/*",
 		"https://4pda.to/*",
-		"https://app.4pda.ru/*",
 		"notifications",
 		"storage"
 	],
@@ -37,6 +37,19 @@
 		"page": "html/options.html"
 	},
 	"background": {
-		"page": "html/background.html"
+		"scripts" : [
+			"/js2/u/utils.js",
+			"/js2/u/browser.js",
+			"/js2/u/notifications.js",
+			"/js2/u/xhr.js",
+			"/js2/vars.js",
+
+			"/js2/e/user.js",
+			"/js2/e/favorites.js",
+			"/js2/e/qms.js",
+			"/js2/e/mentions.js",
+
+			"/js2/cs.js"
+		]
 	}
 }

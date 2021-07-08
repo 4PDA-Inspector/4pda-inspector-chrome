@@ -1,6 +1,6 @@
 ﻿<html lang="ru">
 <head>
-	<title>4PDA Инспектор - Настройки</title>
+	<title>4PDA Инспектор :: Настройки</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="/css/options.css">
 </head>
@@ -21,19 +21,21 @@
 			Громкость звукового уведомления: <span id="inspector4pda_notificationSoundVolumeLabel"></span> &nbsp;<span id="testNotifications" class="linkStyled">ТЕСТ</span> <br>
 			<input type="range" name="notification_sound_volume" id="notification_sound_volume" min="0" max="1" step="0.05" /><br>
 			<span class="header">QMS</span>
-			<label><input type="checkbox" name="notification_sound_qms">Звуковые оповещения</label>
-			<label><input type="checkbox" name="notification_popup_qms" id="notification_popup_qms">Всплывающие оповещения</label>
+			<label><input type="checkbox" name="notification_qms_sound">Звуковые оповещения</label>
+			<label><input type="checkbox" name="notification_qms_popup" id="notification_qms_popup">Всплывающие оповещения</label>
+			<label><input type="checkbox" name="notification_qms_all_messages" id="notification_qms_all_messages">Оповещать о всех сообщениях</label>
 			<span class="header">Темы</span>
-			<label><input type="checkbox" name="notification_sound_themes">Звуковые оповещения</label>
-			<label><input type="checkbox" name="notification_popup_themes" id="notification_popup_themes">Всплывающие оповещения</label>
+			<label><input type="checkbox" name="notification_themes_sound">Звуковые оповещения</label>
+			<label><input type="checkbox" name="notification_themes_popup" id="notification_themes_popup">Всплывающие оповещения</label>
+			<label><input type="checkbox" name="notification_themes_all_comments" id="notification_themes_popup_all_comments">Оповещать о всех комментариях</label>
 			<span class="header">Упоминания</span>
-			<label><input type="checkbox" name="notification_sound_mentions">Звуковые оповещения</label>
-			<label><input type="checkbox" name="notification_popup_mentions" id="notification_popup_mentions">Всплывающие оповещения</label>
+			<label><input type="checkbox" name="notification_mentions_sound">Звуковые оповещения</label>
+			<label><input type="checkbox" name="notification_mentions_popup" id="notification_mentions_popup">Всплывающие оповещения</label>
 		</p>
 
 		<h1>Всплывающая панель</h1>
 		<p>
-			<label><input type="checkbox" name="toolbar_opentheme_hide">Закрывать при открытии новой страницы (активировать новую вкладку)</label>
+			<label><input type="checkbox" name="toolbar_open_theme_hide">Закрывать при открытии новой страницы (активировать новую вкладку)</label>
 		</p>
 		<h2>Закреплённые темы</h2>
 		<p>
@@ -42,6 +44,12 @@
 		</p>
 		<h2>Оформление</h2>
 		<p>
+			<span>
+				Тема:
+				<label><input type="radio" name="toolbar_theme" value="auto">Авто</label>
+				<label><input type="radio" name="toolbar_theme" value="light">Светлая</label>
+				<label><input type="radio" name="toolbar_theme" value="dark">Тёмная</label>
+			</span>
 			<label><input type="checkbox" name="toolbar_simple_list">Простой список</label>
 			<span>
 				<label><input type="checkbox" name="toolbar_width_fixed">Зафиксировать ширину списка:</label>
@@ -50,9 +58,9 @@
 		</p>
 		<h2>Управляющие кнопки</h2>
 		<p>
-			<label><input type="checkbox" name="toolbar_openAllFavs_button">"Открыть все непрочитанные темы в новых вкладках"</label>
+			<label><input type="checkbox" name="toolbar_button_open_all">"Открыть все непрочитанные темы в новых вкладках"</label>
 			<label>Открывать порциями по: <input type="number" min="0" name="open_themes_limit" class="numbered"> <span class="infoLabel">0 - без ограничений</span></label>
-			<label><input type="checkbox" name="toolbar_markAllAsRead_button">"Пометить все темы прочитанными"</label>
+			<label><input type="checkbox" name="toolbar_button_read_all">"Пометить все темы прочитанными"</label>
 		</p>
 		<h2>Пользовательские ссылки</h2>
 		<div id="userLinksDiv">
@@ -73,7 +81,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/js/options.js"></script>
-	<script type="text/javascript" src="/js/browser.js"></script>
+	<script type="text/javascript" src="/js2/html/options.js"></script>
 </body>
 </html>

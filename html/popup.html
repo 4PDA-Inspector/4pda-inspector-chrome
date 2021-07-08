@@ -3,13 +3,6 @@
 	<title>4PDA Инспектор</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="/css/popup.css">
-	<script src="/js/browser.js"></script>
-	<script src="/js/utils.js"></script>
-	<script src="/js/classes/vars.js"></script>
-	<script src="/js/classes/xhr.js"></script>
-	<script src="/js/classes/user.js"></script>
-	<script src="/js/classes/themes.js"></script>
-	<script src="/js/classes/qms.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -37,6 +30,24 @@
 		<div id="userLinks"></div>
 	</div>
 	<div id="themesList"></div>
-	<script src="/js/popup.js"></script>
+	<div id="templates">
+		<div class="oneTheme" id="tpl_one_theme">
+			<div class="overlay"></div>
+			<span class="oneTheme_caption">title</span>
+			<div class="break"></div>
+			<div class="lastPost" title="Открыть последнее сообщение">
+				<span class="oneTheme_user">last_user</span>
+				<span class="oneTheme_lastPost" title="Открыть последнее сообщение">last_dt</span>
+			</div>
+			<span class="icon_mask svg oneTheme_markAsRead" title="Пометить как прочитанное"></span>
+		</div>
+		<div class="oneTheme" id="tpl_one_theme_simple">
+			<div class="overlay"></div>
+			<span class="oneTheme_caption">title</span>
+			<span class="icon_mask svg oneTheme_markAsRead" title="Пометить как прочитанное"></span>
+		</div>
+		<div class="oneTheme" id="tpl_no_themes">Непрочитанных тем нет</div>
+	</div>
+	<script src="/js2/html/popup.js"></script>
 </body>
 </html>

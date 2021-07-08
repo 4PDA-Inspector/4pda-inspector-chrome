@@ -1,0 +1,9 @@
+https://developer.chrome.com/docs/extensions/mv3/getstarted/
+https://developer.chrome.com/docs/extensions/reference/i18n/
+https://developer.chrome.com/docs/extensions/reference/runtime/
+    close - clean all notifications
+    install - vars.check_new_build?
+https://developer.chrome.com/docs/extensions/mv2/manifest/storage/
+    & sync
+
+tab groups

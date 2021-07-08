@@ -1,10 +1,70 @@
 @import "global.less";
 
+@color_theme_hover_bg: fade(@color_base_medium, 20%);
+
 body {
 	.font-default();
 	margin: 0 0 5px;
 	color: @color_base;
-	background: #FFFFFF;
+	background-color: @color_white;
+	user-select: none;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: @color_disabled;
+	}
+	&::-webkit-scrollbar-track {
+		background: fade(@color_base_lightest, 50%);
+	}
+}
+
+.body_dark() {
+	background-color: #000000;
+	color: @color_base_light;
+	.icon_mask {
+		background: @color_base_light;
+		&:hover {
+			background: @color_base_hover;
+		}
+	}
+	#mainPanel {
+		#mainPanelButtonsBox {
+			.icoAndCount.hasUnread {
+				color: @color_base_light;
+				&::before {
+					background: @color_base_medium;
+				}
+				&:hover {
+					color: @color_base_hover;
+					&::before {
+						background: @color_base_hover;
+					}
+				}
+			}
+		}
+	}
+	#themesList {
+		> .oneTheme {
+			.oneTheme_caption {
+				color: @color_base_light;
+				&:hover {
+					color: @color_base_hover;
+				}
+				&.oneTheme_pin {
+					color: @color_highlight;
+					&:hover {
+						color: @color_highlight_hover;
+					}
+				}
+			}
+		}
+	}
+}
+body.theme_dark {
+	.body_dark()
 }
 
 /***************** GLOBAL *****************/
@@ -32,14 +92,23 @@ body {
 	to {  -moz-transform:rotate(360deg);}
 }
 
+#mainPanel span,
+#mainPanel .icoAndCount::before,
+#themesList > .oneTheme span
+{
+	transition: background-color @transition-duration,
+				color @transition-duration,
+				border-color @transition-duration;
+}
+
 /*********************************************/
 
 #header {
 	padding: 0;
 	position: sticky;
 	top: 0;
-	background: @color_white;
-	z-index: 1;
+	background: inherit;
+	z-index: 10;
 }
 
 #mainPanel {
@@ -95,7 +164,6 @@ body {
 				display: inline-block;
 				.square(16px);
 				margin-right: 2px;
-				.background-transition();
 			}
 
 			&.hasUnread {
@@ -133,7 +201,6 @@ body {
 		flex-grow: 0;
 		text-align: center;
 		#panelSettings {
-			//.mask-position(-64px);
 			.mask-image(url("/img/settings.svg"));
 			margin: 0 10px !important;
 		}
@@ -173,13 +240,15 @@ body {
 }
 
 #userLinks {
-	/*display: none;*/
 	width: 100%;
 	border-bottom: 1px dotted @color_base;
 	padding: 0;
 
+	&:empty {
+		display: none;
+	}
+
 	span {
-		color: @color_base;
 		cursor: pointer;
 		font-size: 13px;
 		margin: 5px;
@@ -198,48 +267,77 @@ body {
 #themesList {
 	z-index: 0;
 
-	span {
-		cursor: pointer;
-	}
-
 	> .oneTheme {
-		display: block;
-		border-bottom: 1px solid @color_base_lightest;
+		.flex-row();
+		flex-wrap: wrap;
+		border-bottom: 1px solid @color_theme_hover_bg;
 		padding: 2px 5px;
-		position: relative;
 		white-space: nowrap;
+		position: relative;
+
+		> * {
+			cursor: pointer;
+		}
+
 		&:hover {
-			background: linear-gradient(to right, @color_base_lightest 0, @color_base_lightest 95%, @color_white 100%);
+			background: linear-gradient(to right, @color_theme_hover_bg 0, @color_theme_hover_bg 95%, transparent 100%);
+		}
+
+		.overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+
+			&:hover {
+				+ .oneTheme_caption {
+					color: @color_base_hover;
+					&.oneTheme_pin {
+						color: @color_highlight_hover;
+					}
+				}
+			}
 		}
 
 		.oneTheme_caption {
-			color: @color_base;
-			font-size: 13px;
-			margin: 0;
 			overflow: hidden;
-			display: inline-block;
-			max-width: 100%;
 			text-overflow: ellipsis;
-			&:hover {
-				color: @color_base_hover;
-			}
-
+			flex-grow: 1;
+			pointer-events: none;
 			&.oneTheme_pin {
 				color: @color_highlight;
-				&:hover {
-					color: @color_highlight_hover;
-				}
+			}
+		}
+
+		.break {
+			flex-basis: 100%;
+			height: 0;
+		}
+
+		.lastPost {
+			color: @color_disabled;
+			font-size: 11px;
+			z-index: 2;
+			> span {
+				margin: 0 5px 0 0;
+				pointer-events: none;
+			}
+
+			&:hover {
+				color: @color_base_hover;
 			}
 		}
 
 		.oneTheme_markAsRead {
 			.square(14px);
-			display: block;
-			margin: 0;
 			.mask-image(url("/img/eye.svg"));
 			.mask(14px 14px);
 			background: @color_disabled;
-			flex-shrink: 0;
+			padding-left: 5px;
+			z-index: 2;
+
 			&:hover {
 				background: @color_base_hover;
 			}
@@ -250,41 +348,40 @@ body {
 		}
 
 		&.used {
+			color: @color_disabled;
 			.oneTheme_caption {
-				color: @color_disabled;
+				color: inherit;
 				text-decoration: line-through;
+				&:hover {
+					color: inherit;
+				}
+			}
+			.lastPost {
+				color: inherit;
 			}
 			.oneTheme_markAsRead {
-				opacity: 0.2;
+				background: fade(@color_disabled, 40%);
+			}
+
+			.overlay:hover + .oneTheme_caption {
+				color: inherit;
 			}
 		}
 	}
 
 	&.simpleList {
 		.oneTheme {
-			.flex-row();
+			flex-wrap: nowrap;
 		}
 	}
+}
 
-	.oneThemeInfoHBox {
-		color: @color_disabled;
-		position: relative;
-		font-size: 11px;
-		.flex-row();
+#templates {
+	.hidden;
+}
 
-		> span:not(:last-child) {
-			margin: 0 10px 0 0;
-		}
-		>.oneTheme_user {
-			cursor: default;
-			overflow-x: hidden;
-			text-overflow: ellipsis;
-		}
-		>.space {
-			flex-grow: 1;
-		}
-		>.oneTheme_lastPost:hover {
-			color: @color_base_hover;
-		}
+@media (prefers-color-scheme: dark) {
+	body.theme_auto {
+		.body_dark()
 	}
 }
